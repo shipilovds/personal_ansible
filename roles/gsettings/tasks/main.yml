@@ -1,0 +1,16 @@
+- name: Check library dir exist
+  file:
+    path: "{{ playbook_dir }}/library"
+    state: directory
+
+- name: Install/update library
+  get_url:
+    url: https://raw.githubusercontent.com/jistr/ansible-gsetting/master/gsetting.py
+    dest: "{{ playbook_dir }}/library/gsetting"
+
+- name:
+  gsetting:
+     user: "{{ansible_user}}"
+     key: "{{item.key}}"
+     value: "{{item.value}}"
+  with_items: "{{gsettings}}"

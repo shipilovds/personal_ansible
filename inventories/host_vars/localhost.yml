@@ -1,0 +1,41 @@
+yum_repos:
+  - name: tcg-themes
+    description: "Copr repo for themes owned by tcg"
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/tcg/themes/fedora-$releasever-$basearch/
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/tcg/themes/pubkey.gpg
+    gpgcheck: yes
+  - name: google-chrome
+    description: "Official google crome repo"
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+    gpgcheck: yes
+
+rpm_packages:
+  - nano
+  - tmux
+  - materia-theme
+  - paper-icon-theme
+  - gnome-tweaks
+  - google-chrome-stable
+  - chrome-gnome-shell
+  - zsh
+  - git
+  - htop
+  - transmission
+  - python2-libselinux
+
+gsettings:
+  - key: org.gnome.desktop.interface.icon-theme
+    value: Paper
+  - key: org.gnome.nautilus.preferences.default-folder-viewer
+    value: list-view
+  - key: org.gnome.shell.extensions.user-theme.name
+    value: Materia-dark-compact
+  - key: org.gnome.desktop.interface.gtk-theme
+    value: Materia-dark-compact
+  - key: org.gnome.nautilus.preferences.always-use-location-entry
+    value: "true"
+  - key: org.gnome.nautilus.preferences.default-sort-order
+    value: type
+  - key: org.gnome.desktop.wm.keybindings.switch-input-source
+    value: "['<Alt>Shift_L']"

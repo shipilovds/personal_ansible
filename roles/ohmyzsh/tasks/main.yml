@@ -1,0 +1,44 @@
+---
+
+- name: cloning repo
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: "{{ item.home }}/.oh-my-zsh"
+  with_items: "{{ ohmyzsh_users }}"
+
+- name: set permissions
+  file:
+    path: "{{ item.home }}/.oh-my-zsh"
+    state: directory
+    recurse: yes
+    owner: "{{ item.username }}"
+    group: "{{ item.usergroup }}"
+  with_items: "{{ ohmyzsh_users }}"
+
+- name: add syntax highlighting plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: "{{ item.home }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+  with_items: "{{ ohmyzsh_users }}"
+
+- name: check highlighting plugin permissions are correct
+  file:
+    path: "{{ item.home }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+    owner: "{{ item.username }}"
+    group: "{{ item.usergroup }}"
+  with_items: "{{ ohmyzsh_users }}"
+
+- name: creating new ~/.zshrc
+  template:
+    src: zshrc.j2
+    dest: "{{ item.home }}/.zshrc"
+    owner: "{{ item.username }}"
+    group: "{{ item.usergroup }}"
+  with_items: "{{ ohmyzsh_users }}"
+  tags: ohmyzsh_config
+
+- name: ensure user is using zsh shell
+  user:
+    name: "{{ item.username }}"
+    shell: /bin/zsh
+  with_items: "{{ ohmyzsh_users }}"
