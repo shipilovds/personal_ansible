@@ -1,0 +1,10 @@
+- name: Download foo.conf
+  get_url:
+    url: https://gist.githubusercontent.com/dartvaper/1472461cf0c77dd1ef293b8ee0bf3310/raw/c57352e249cc0a2e8686df1826720a678d8319ea/tmux.conf
+    dest: ~/.tmux.conf
+
+- name: Download foo.conf
+  get_url:
+    url: https://gist.githubusercontent.com/dartvaper/c58ad1e0b267bf29c1b90ade28b0171b/raw/97da93020ca9817d46aa5daa5c6da95d2e6b0f37/cpum.py
+    dest: /usr/bin/cpum
+    mode: u=rwx,g=rx,o=rx

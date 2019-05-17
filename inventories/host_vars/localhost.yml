@@ -24,6 +24,22 @@ rpm_packages:
   - transmission
   - python2-libselinux
 
+apt_repos:
+  - 'ppa:snwh/ppa'
+
+apt_packages:
+  - nano
+  - tmux
+  - zsh
+  - git
+  - htop
+  - chrome-gnome-shell
+  - gnome-tweaks
+  - materia-gtk-theme
+  - paper-icon-theme
+  - transmission
+  - libglib2.0-dev
+
 gsettings:
   - key: org.gnome.desktop.interface.icon-theme
     value: Paper

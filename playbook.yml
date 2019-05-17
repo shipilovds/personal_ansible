@@ -1,7 +1,9 @@
 - hosts: localhost
-  become: yes
+  become: true
   roles:
-    - dnf
+#    - apt
+#    - dnf
 #    - gnome-shell-extensions
-    - gsettings
-    - ohmyzsh
+#    - gsettings
+#    - ohmyzsh
+    - configs
