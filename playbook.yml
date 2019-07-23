@@ -1,8 +1,8 @@
 - hosts: localhost
   become: true
   roles:
-#    - apt
-#    - dnf
+    - pkgs
+    - pip
 #    - gnome-shell-extensions
 #    - gsettings
 #    - ohmyzsh

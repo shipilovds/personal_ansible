@@ -1,25 +1,20 @@
-- name: Install a .deb package from the internet.
+- name: Install google-chrome from remote
   apt:
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-- name: Add apt repos
+- name: Add repos
   apt_repository:
     repo: "{{ item }}"
     codename: disco
   loop: "{{ apt_repos }}"
 
-- name: Install a list of packages
+- name: Install packages
   apt:
     name: "{{ apt_packages }}"
     update_cache: true
 
-- name: Install pip pkgs
-  pip:
-    name: psutil
-    executable: pip3
-
-
-- name: remove ubuntu gnome dock
+- name: Remove ubuntu gnome dock
   apt:
     name: gnome-shell-extension-ubuntu-dock
     state: absent
+
