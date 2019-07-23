@@ -2,8 +2,8 @@
 "One ring to rule them all"
 
 ## Compatibility list:
-- Fedora 27
-- Fedora 28
+- Fedora 30
+- Ubuntu 19.04
 
 ## Copied from other projects:
 

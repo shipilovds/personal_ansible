@@ -1,4 +1,4 @@
-yum_repos:
+dnf_repos:
   - name: tcg-themes
     description: "Copr repo for themes owned by tcg"
     baseurl: https://copr-be.cloud.fedoraproject.org/results/tcg/themes/fedora-$releasever-$basearch/
@@ -10,7 +10,7 @@ yum_repos:
     gpgkey: https://dl.google.com/linux/linux_signing_key.pub
     gpgcheck: yes
 
-rpm_packages:
+dnf_packages:
   - nano
   - tmux
   - materia-theme
@@ -22,7 +22,28 @@ rpm_packages:
   - git
   - htop
   - transmission
-  - python2-libselinux
+  - python3-devel
+  - yamllint
+
+apt_repos:
+  - 'ppa:snwh/ppa'
+
+apt_packages:
+  - nano
+  - tmux
+  - zsh
+  - git
+  - htop
+  - chrome-gnome-shell
+  - gnome-tweaks
+  - materia-gtk-theme
+  - paper-icon-theme
+  - transmission
+  - libglib2.0-dev
+  - yamllint
+
+pip_packages:
+  - psutil
 
 gsettings:
   - key: org.gnome.desktop.interface.icon-theme

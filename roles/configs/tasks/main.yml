@@ -1,0 +1,24 @@
+- name: Download my tmux.conf
+  get_url:
+    url: https://gist.githubusercontent.com/shipilovds/1472461cf0c77dd1ef293b8ee0bf3310/raw/ce3873a68d92561491d2ea475b3749dbac97729a/tmux.conf
+    dest: ~/.tmux.conf
+  become: false
+
+- name: Download utility for tmux status panel
+  get_url:
+    url: https://gist.githubusercontent.com/shipilovds/c58ad1e0b267bf29c1b90ade28b0171b/raw/97da93020ca9817d46aa5daa5c6da95d2e6b0f37/cpum.py
+    dest: /usr/bin/cpum
+    mode: u=rwx,g=rx,o=rx
+
+- name: Create conf dir for yamllint
+  file:
+    path: ~/.config/yamllint
+    state: directory
+  become: false
+
+- name: Download my yamllint conf
+  get_url:
+    url: https://gist.githubusercontent.com/shipilovds/81d6e9e731eee68aa9f4dcfc171b74e5/raw/283ba588f687d30ec107393ce69063250225e426/yamllint.conf
+    dest: ~/.config/yamllint/config
+  become: false
+

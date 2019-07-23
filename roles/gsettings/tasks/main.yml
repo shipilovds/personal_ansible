@@ -8,9 +8,10 @@
     url: https://raw.githubusercontent.com/jistr/ansible-gsetting/master/gsetting.py
     dest: "{{ playbook_dir }}/library/gsetting"
 
-- name:
+- name: gsettings keys setup
   gsetting:
-     user: "{{ansible_user}}"
-     key: "{{item.key}}"
-     value: "{{item.value}}"
-  with_items: "{{gsettings}}"
+     user: "{{ ansible_user }}"
+     key: "{{ item.key }}"
+     value: "{{ item.value }}"
+  loop: "{{ gsettings }}"
+#  become: false

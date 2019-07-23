@@ -1,0 +1,20 @@
+- name: Install google-chrome from remote
+  apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+- name: Add repos
+  apt_repository:
+    repo: "{{ item }}"
+    codename: disco
+  loop: "{{ apt_repos }}"
+
+- name: Install packages
+  apt:
+    name: "{{ apt_packages }}"
+    update_cache: true
+
+- name: Remove ubuntu gnome dock
+  apt:
+    name: gnome-shell-extension-ubuntu-dock
+    state: absent
+

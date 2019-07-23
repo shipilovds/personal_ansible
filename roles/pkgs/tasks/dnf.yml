@@ -1,0 +1,14 @@
+- name: Add repos
+  yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.baseurl }}"
+    gpgkey: "{{ item.gpgkey }}"
+    gpgcheck: "{{ item.gpgcheck }}"
+  loop: "{{ dnf_repos }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Install packages
+  dnf:
+    name: "{{ dnf_packages }}"
