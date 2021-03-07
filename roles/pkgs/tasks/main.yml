@@ -1,8 +1,8 @@
-- name: Install apt packages
-  include: apt.yml
-  when: ansible_distribution == 'Ubuntu'
-
+---
 - name: Install dnf packages
   include: dnf.yml
-  when: ansible_distribution == 'Fedora'
+  tags: ['pkgs']
 
+- name: Install pip packages
+  include: pip.yml
+  tags: ['pip']

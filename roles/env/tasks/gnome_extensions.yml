@@ -1,0 +1,21 @@
+---
+- name: 'Gnome Extensions : Install'
+  gnome_extension:
+    name: "{{ item.name }}"
+    src: "{{ item.url }}"
+  when: item.url
+  loop: "{{ env_gnome_extensions_list }}"
+  loop_control:
+    label: "{{ item['name'].split('@')[0] }}"
+
+# We can not enable just installed extensions
+# But: the state of untouched extensions going to be unchanged (green)
+# Thats why you need to restart gnome session and run it once again
+# All extensions present will be in changed state
+- name: 'Gnome Extensions : Enable/disable'
+  gnome_extension:
+    name: "{{ item.name }}"
+    enabled: "{{ item.enabled }}"
+  loop: "{{ env_gnome_extensions_list }}"
+  loop_control:
+    label: "{{ item['name'].split('@')[0] }}: {% if item.enabled %}enabled{% else %}disabled{% endif %}"

@@ -1,0 +1,20 @@
+---
+pkgs_dnf_repos: []
+### Example:
+# pkgs_dnf_repos:
+#   - name: GoogleChrome
+#     description: 'Official google crome repo'
+#     baseurl: 'http://dl.google.com/linux/chrome/rpm/stable/x86_64'
+#     gpgkey: 'https://dl.google.com/linux/linux_signing_key.pub'
+#     gpgcheck: True
+pkgs_dnf_packages: []
+### Example:
+# pkgs_dnf_packages:
+#   - git
+#   - google-chrome-stable
+#   - htop
+pkgs_pip_packages: []
+### Example:
+# pkgs_pip_packages:
+#   - ansible-lint
+#   - flake8

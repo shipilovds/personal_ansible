@@ -1,0 +1,32 @@
+---
+env_ohmyzsh_additional_plugins:
+  - 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+
+env_ohmyzsh_config_plugins:
+  - 'colored-man-pages'
+  - 'colorize'
+  - 'extract'
+  - 'git'
+  - 'history'
+  - 'httpie'
+  - 'npm'
+  - 'symfony2'
+  - 'zsh-syntax-highlighting'
+
+env_gnome_extensions_list: []
+### Example:
+# env_gnome_extensions_list:
+#   - name: 'dash-to-panel@jderose9.github.com'
+#     enabled: True
+#     url: 'https://extensions.gnome.org/extension-data/dash-to-paneljderose9.github.com.v40.shell-extension.zip'
+#   - name: 'apps-menu@gnome-shell-extensions.gcampax.github.com'
+#     enabled: False
+#     url: ''
+
+env_gsettings_kv: []
+### Example:
+# env_gsettings_kv:
+#   - key: 'org.gnome.nautilus.preferences.default-folder-viewer'
+#     value: 'list-view'
+#   - key: 'org.gnome.nautilus.preferences.always-use-location-entry'
+#     value: 'True'

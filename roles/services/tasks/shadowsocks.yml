@@ -1,0 +1,17 @@
+---
+- name: 'Shadowsocks : Install generated conf'
+  copy:
+    content: "{{ services_shadowsocks_conf }}"
+    dest: /etc/shadowsocks.json
+
+- name: 'Shadowsocks : Install service file'
+  copy:
+    src: 'shadowsocks.service'
+    dest: '/etc/systemd/system/shadowsocks.service'
+
+- name: 'Shadowsocks : Make shure that service is running'
+  systemd:
+    name: 'shadowsocks.service'
+    state: started
+    enabled: True
+    daemon_reload: True

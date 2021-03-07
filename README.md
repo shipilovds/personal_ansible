@@ -1,14 +1,11 @@
 # Personal ansible repo for home and work
 "One ring to rule them all"
 
-## Compatibility list:
-- Fedora 30
-- Ubuntu 19.04
+## Guaranteed compatibility with OS
+- Fedora 33
 
-## Copied from other projects:
+## Usage
 
-library/gsetting - https://github.com/jistr/ansible-gsetting
-
-roles/ohmyzsh - https://github.com/jebovic/ansible-ohmyzsh
-
-With gratitude to the authors for the provided content :)
+```
+ansible-playbook playbook.yml [-t tags(comma separated list)]
+```

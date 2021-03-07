@@ -1,0 +1,10 @@
+---
+services_shadowsocks_conf: {}
+# services_shadowsocks_conf:
+#   server: 'example.com'
+#   server_port: 8388
+#   local_port: 8787
+#   password: 'Pa$$word'
+#   timeout: 300
+#   method: 'aes-256-cfb'
+#   fast_open: True

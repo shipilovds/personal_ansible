@@ -1,0 +1,102 @@
+---
+pkgs_dnf_repos:
+  - name: GoogleChrome
+    description: 'Official google crome repo'
+    baseurl: 'http://dl.google.com/linux/chrome/rpm/stable/x86_64'
+    gpgkey: 'https://dl.google.com/linux/linux_signing_key.pub'
+    gpgcheck: True
+  - name: PlexRepo
+    description: 'Plex media server'
+    baseurl: 'https://downloads.plex.tv/repo/rpm/$basearch/'
+    gpgkey: 'https://downloads.plex.tv/plex-keys/PlexSign.key'
+    gpgcheck: True
+
+pkgs_dnf_packages:
+  - chrome-gnome-shell
+  - gimp
+  - git
+  - gitk
+  - glib2-devel
+  - gnome-tweaks
+  - google-chrome-stable
+  - gtk-murrine-engine
+  - gtk2-engines
+  - htop
+  - materia-gtk-theme
+  - neovim
+  - paper-icon-theme
+  - plexmediaserver
+  - python3-devel
+  - python3-passlib
+  - snapd
+  - tig
+  - tmux
+  - transmission
+  - yamllint
+  - zsh
+
+pkgs_pip_packages:
+  - ansible-lint
+  - flake8
+  - hvac
+  - protobuf
+  - psutil
+  - shadowsocks-py
+
+tools_neovim_plugins:
+  - 'git@github.com:nvie/vim-flake8.git'
+  - 'git@github.com:dense-analysis/ale.git'
+  - 'git@github.com:zefei/simple-dark.git'
+  - 'git@github.com:jvirtanen/vim-hcl.git'
+  - 'git@github.com:martinda/Jenkinsfile-vim-syntax.git'
+
+env_gnome_extensions_list:
+  - name: 'dash-to-panel@jderose9.github.com'
+    enabled: True
+    url: 'https://extensions.gnome.org/extension-data/dash-to-paneljderose9.github.com.v40.shell-extension.zip'
+  - name: 'arcmenu@arcmenu.com'
+    enabled: True
+    url: 'https://extensions.gnome.org/extension-data/arcmenuarcmenu.com.v6.shell-extension.zip'
+  - name: 'remove-dropdown-arrows@mpdeimos.com'
+    enabled: True
+    url: 'https://extensions.gnome.org/extension-data/remove-dropdown-arrowsmpdeimos.com.v13.shell-extension.zip'
+  - name: 'CoverflowAltTab@palatis.blogspot.com'
+    enabled: True
+    url: 'https://extensions.gnome.org/extension-data/CoverflowAltTabpalatis.blogspot.com.v44.shell-extension.zip'
+  - name: 'night-light-slider.timur@linux.com '
+    enabled: True
+    url: 'https://extensions.gnome.org/extension-data/night-light-slider.timurlinux.com.v19.shell-extension.zip'
+  - name: 'user-theme@gnome-shell-extensions.gcampax.github.com'
+    enabled: True
+    url: ''
+  - name: 'apps-menu@gnome-shell-extensions.gcampax.github.com'
+    enabled: False
+    url: ''
+  - name: 'horizontal-workspaces@gnome-shell-extensions.gcampax.github.com'
+    enabled: False
+    url: ''
+  - name: 'launch-new-instance@gnome-shell-extensions.gcampax.github.com'
+    enabled: False
+    url: ''
+  - name: 'places-menu@gnome-shell-extensions.gcampax.github.com'
+    enabled: False
+    url: ''
+  - name: 'window-list@gnome-shell-extensions.gcampax.github.com'
+    enabled: False
+    url: ''
+
+env_gsettings_kv:
+  - key: 'org.gnome.desktop.interface.icon-theme'
+    value: 'Paper'
+  - key: 'org.gnome.shell.extensions.user-theme.name'
+    value: 'Materia-dark-compact'
+  - key: 'org.gnome.desktop.interface.gtk-theme'
+    value: 'Materia-dark-compact'
+  - key: 'org.gnome.nautilus.preferences.default-folder-viewer'
+    value: 'list-view'
+  - key: 'org.gnome.nautilus.preferences.default-sort-order'
+    value: 'type'
+  - key: 'org.gnome.nautilus.preferences.always-use-location-entry'
+    value: True
+#   - key: org.gnome.desktop.wm.keybindings.switch-input-source
+#     value: "['<Alt>Shift_L']"

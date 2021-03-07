@@ -1,5 +1,0 @@
-- name: Enable extensions
-  shell: gnome-shell-extension-tool -e user-theme
-  register: command_result
-  become: false
-  failed_when: command_result.rc == 1 and "'user-theme' is already enabled." not in command_result.stderr

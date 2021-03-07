@@ -1,9 +1,18 @@
+---
 - hosts: localhost
-  become: true
+  vars_files:
+    - vars/general.yml
+    - vars/enctypted.yml
   roles:
-    - pkgs
-    - pip
-#    - gnome-shell-extensions
-#    - gsettings
-#    - ohmyzsh
-    - configs
+    - role: pkgs
+      become: True
+      tags: ['pkgs']
+    - role: tools
+      become: False
+      tags: ['tools']
+    - role: services
+      become: True
+      tags: ['services']
+    - role: env
+      become: False
+      tags: ['env']

@@ -1,0 +1,21 @@
+---
+- name: 'Neovim : Check if needed dirs exists'
+  file:
+    state: directory
+    path: "~/{{ item }}"
+  loop:
+    - '.config/nvim/bundle'
+    - '.local/share/nvim/site/pack/git-plugins/start/common'
+
+- name: 'Neovim : Install config file'
+  copy:
+    src: 'init.vim'
+    dest: '~/.config/nvim/init.vim'
+
+- name: 'Neovim : Install plugins from git'
+  git:
+    repo: "{{ item }}"
+    dest: "~/.local/share/nvim/site/pack/git-plugins/start/{{ item.split('/')[-1].split('.')[0] }}"
+  loop: "{{ tools_neovim_plugins }}"
+  loop_control:
+    label: "{{ item }}"

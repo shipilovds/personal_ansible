@@ -1,0 +1,6 @@
+---
+# Playbook for repo maintenance
+- hosts: localhost
+  become: False
+  roles:
+    - local_modules

@@ -1,0 +1,11 @@
+[flake8]
+# it's not a bug that we aren't using all of hacking, ignore:
+# E201: whitespace after ‘(‘
+# E202: whitespace before ‘)’
+# E221: multiple spaces before operator
+# E241: multiple spaces after ','
+# E251: unexpected spaces around keyword / parameter equals
+# E501: line too long (82 > 79 characters)
+# E402: module level import not at top of file
+# E741: do not use variables named ‘l’, ‘O’, or ‘I’
+ignore = E402, E501

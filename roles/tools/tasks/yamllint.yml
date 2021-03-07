@@ -1,0 +1,10 @@
+---
+- name: 'Yamllint : Create config dir'
+  file:
+    path: ~/.config/yamllint
+    state: directory
+
+- name: 'Yamllint : Install config file'
+  get_url:
+    url: https://gist.githubusercontent.com/shipilovds/81d6e9e731eee68aa9f4dcfc171b74e5/raw/283ba588f687d30ec107393ce69063250225e426/yamllint.conf
+    dest: ~/.config/yamllint/config

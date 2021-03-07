@@ -1,0 +1,33 @@
+extends: default
+
+yaml-files:
+  - '*.yaml'
+  - '*.yml'
+  - '*.yaml.j2'
+  - '*.yml.j2'
+
+rules:
+  braces:
+    max-spaces-inside: 1
+    level: error
+  document-start:
+    present: true
+  indentation:
+    spaces: 2
+    indent-sequences: consistent
+    level: warning
+  empty-lines:
+    max: 1
+    level: warning
+  line-length:
+    max: 150
+    level: warning
+    allow-non-breakable-words: true
+    allow-non-breakable-inline-mappings: true
+  comments:
+    require-starting-space: false
+    level: warning
+  comments-indentation: {}
+  truthy:
+    allowed-values: ["True", "False"]
+  trailing-spaces: {}
