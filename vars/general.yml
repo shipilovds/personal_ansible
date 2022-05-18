@@ -5,35 +5,47 @@ pkgs_dnf_repos:
     baseurl: 'http://dl.google.com/linux/chrome/rpm/stable/x86_64'
     gpgkey: 'https://dl.google.com/linux/linux_signing_key.pub'
     gpgcheck: True
-  - name: PlexRepo
+  - name: plex
     description: 'Plex media server'
     baseurl: 'https://downloads.plex.tv/repo/rpm/$basearch/'
     gpgkey: 'https://downloads.plex.tv/plex-keys/PlexSign.key'
     gpgcheck: True
+  - name: VScode
+    description: 'Visual Studio Code'
+    baseurl: 'https://packages.microsoft.com/yumrepos/vscode'
+    gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc'
+    gpgcheck: True
 
 pkgs_dnf_packages:
   - chrome-gnome-shell
+  - code
+  - dconf-editor
+  - dnf-plugins-core
   - gimp
   - git
   - gitk
   - glib2-devel
+  - gnome-extensions-app
   - gnome-tweaks
   - google-chrome-stable
   - gtk-murrine-engine
   - gtk2-engines
   - htop
   - materia-gtk-theme
-  - neovim
   - paper-icon-theme
   - plexmediaserver
   - python3-devel
   - python3-passlib
   - snapd
   - tig
-  - tmux
   - transmission
-  - yamllint
-  - zsh
+  - ulauncher
+  - vlc
+  - wmctrl
+
+pkgs_dnf_base:
+  - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
+  - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
 
 pkgs_pip_packages:
   - ansible-lint
@@ -41,62 +53,198 @@ pkgs_pip_packages:
   - hvac
   - protobuf
   - psutil
-  - shadowsocks-py
 
 tools_neovim_plugins:
-  - 'git@github.com:nvie/vim-flake8.git'
-  - 'git@github.com:dense-analysis/ale.git'
-  - 'git@github.com:zefei/simple-dark.git'
-  - 'git@github.com:jvirtanen/vim-hcl.git'
-  - 'git@github.com:martinda/Jenkinsfile-vim-syntax.git'
+  - 'https://github.com/nvie/vim-flake8'
+  - 'https://github.com/dense-analysis/ale'
+  - 'https://github.com/zefei/simple-dark'
+  - 'https://github.com/jvirtanen/vim-hcl'
+  - 'https://github.com/martinda/Jenkinsfile-vim-syntax'
+  - 'git@github.com:JamshedVesuna/vim-markdown-preview.git'
 
-env_gnome_extensions_list:
+tools_neovim_init_content: |
+  set termguicolors
+  color simple-dark
+  autocmd Filetype make setlocal ts=4 sts=4 sw=4
+  autocmd FileType groovy setlocal et
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0#
+  au BufNewFile,BufReadPost * if &filetype == "yaml" | set softtabstop=2 | set indentkeys-=0# | endif
+  let g:syntastic_yaml_checkers = ['yamllint']
+  let g:netrw_banner = 0
+  let g:netrw_liststyle = 0
+  let g:netrw_altv = 1
+  let g:netrw_winsize = 10
+  let vim_markdown_preview_github=1
+  let vim_markdown_preview_use_xdg_open=1
+
+tools_neovim_dnf_pkgs:
+  - neovim
+  - xdotool
+
+tools_neovim_pip_pkgs:
+  - grip
+
+tools_git_config_settings:
+  user.email: 'shipilovds@gmail.com'
+  user.name: 'Denis Shipilov'
+  core.editor: 'nvim'
+
+tools_gnome_extensions:
+  # User extensions:
   - name: 'dash-to-panel@jderose9.github.com'
-    enabled: True
-    url: 'https://extensions.gnome.org/extension-data/dash-to-paneljderose9.github.com.v40.shell-extension.zip'
+    enabled: 'True'
+    url: 'https://extensions.gnome.org/download-extension/dash-to-panel@jderose9.github.com.shell-extension.zip?version_tag=31977'
   - name: 'arcmenu@arcmenu.com'
     enabled: True
-    url: 'https://extensions.gnome.org/extension-data/arcmenuarcmenu.com.v6.shell-extension.zip'
-  - name: 'remove-dropdown-arrows@mpdeimos.com'
-    enabled: True
-    url: 'https://extensions.gnome.org/extension-data/remove-dropdown-arrowsmpdeimos.com.v13.shell-extension.zip'
+    url: 'https://extensions.gnome.org/download-extension/arcmenu@arcmenu.com.shell-extension.zip?version_tag=32364'
   - name: 'CoverflowAltTab@palatis.blogspot.com'
     enabled: True
-    url: 'https://extensions.gnome.org/extension-data/CoverflowAltTabpalatis.blogspot.com.v44.shell-extension.zip'
-  - name: 'night-light-slider.timur@linux.com '
+    url: 'https://extensions.gnome.org/download-extension/CoverflowAltTab@palatis.blogspot.com.shell-extension.zip?version_tag=32316'
+  - name: 'user-theme-x@tuberry.github.io'
+    url: 'https://extensions.gnome.org/download-extension/user-theme-x@tuberry.github.io.shell-extension.zip?version_tag=30356'
+    enabled: False
+  - name: 'audio-selector@harald65.simon.gmail.com'
     enabled: True
-    url: 'https://extensions.gnome.org/extension-data/night-light-slider.timurlinux.com.v19.shell-extension.zip'
-  - name: 'user-theme@gnome-shell-extensions.gcampax.github.com'
+    url: 'https://extensions.gnome.org/download-extension/audio-selector@harald65.simon.gmail.com.shell-extension.zip?version_tag=32827'
+  - name: 'blur-my-shell@aunetx'
     enabled: True
-    url: ''
+    url: 'https://extensions.gnome.org/download-extension/blur-my-shell@aunetx.shell-extension.zip?version_tag=32720'
+  # System extensions:
   - name: 'apps-menu@gnome-shell-extensions.gcampax.github.com'
     enabled: False
-    url: ''
-  - name: 'horizontal-workspaces@gnome-shell-extensions.gcampax.github.com'
-    enabled: False
-    url: ''
+  - name: 'background-logo@fedorahosted.org'
+    enabled: True
   - name: 'launch-new-instance@gnome-shell-extensions.gcampax.github.com'
     enabled: False
-    url: ''
   - name: 'places-menu@gnome-shell-extensions.gcampax.github.com'
     enabled: False
-    url: ''
   - name: 'window-list@gnome-shell-extensions.gcampax.github.com'
     enabled: False
-    url: ''
 
-env_gsettings_kv:
-  - key: 'org.gnome.desktop.interface.icon-theme'
-    value: 'Paper'
-  - key: 'org.gnome.shell.extensions.user-theme.name'
-    value: 'Materia-dark-compact'
-  - key: 'org.gnome.desktop.interface.gtk-theme'
-    value: 'Materia-dark-compact'
-  - key: 'org.gnome.nautilus.preferences.default-folder-viewer'
-    value: 'list-view'
-  - key: 'org.gnome.nautilus.preferences.default-sort-order'
-    value: 'type'
-  - key: 'org.gnome.nautilus.preferences.always-use-location-entry'
-    value: True
-#   - key: org.gnome.desktop.wm.keybindings.switch-input-source
-#     value: "['<Alt>Shift_L']"
+tools_gsettings:
+  org.gnome.desktop.wm.preferences:
+    keys:
+      audible-bell: False
+  org.gnome.desktop.peripherals.touchpad:
+    keys:
+      tap-to-click: True
+  org.gnome.desktop.interface:
+    keys:
+      color-scheme: 'prefer-dark'
+      icon-theme: 'Paper'
+      gtk-theme: 'Adwaita-dark'
+      cursor-theme: 'Paper'
+      enable-hot-corners: False
+      clock-show-date: True
+  org.gnome.desktop.lockdown:
+    keys:
+      disable-lock-screen: True
+  org.gnome.desktop.wm.keybindings:
+    keys:
+      switch-input-source:
+        - '<Alt>Shift_L'
+  org.gnome.desktop.input-sources:
+    keys:
+      sources: ['(xkb, us)', '(xkb, ru)']
+  org.gnome.desktop.notifications.application:
+    path: '/org/gnome/desktop/notifications/application/org-gnome-software/'
+    keys:
+      enable: False
+  org.gnome.desktop.sound:
+    keys:
+      allow-volume-above-100-percent: True
+      event-sounds: True
+  org.gnome.nautilus.preferences:
+    keys:
+      default-folder-viewer: 'list-view'
+      default-sort-order: 'name'
+      always-use-location-entry: True
+  org.gnome.settings-daemon.plugins.power:
+    keys:
+      power-button-action: 'nothing'
+      sleep-inactive-ac-type: 'nothing'
+      idle-dim: False
+      sleep-inactive-ac-timeout: 3600
+  org.gnome.settings-daemon.plugins.color:
+    keys:
+      night-light-enabled: True
+  org.gnome.shell:
+    keys:
+      favorite-apps:
+        - 'org.gnome.Nautilus.desktop'
+        - 'google-chrome.desktop'
+        - 'org.gnome.Terminal.desktop'
+  #org.gnome.shell.extensions.user-theme:
+  #  keys:
+  #    name: 'Materia-dark'
+  org.gnome.software:
+    keys:
+      download-updates: False
+  org.gtk.Settings.FileChooser:
+    keys:
+      location-mode: 'filename-entry'
+      sort-directories-first: True
+  org.gtk.gtk4.Settings.FileChooser:
+    keys:
+      location-mode: 'filename-entry'
+      sort-directories-first: True
+  org.gnome.shell.extensions.arcmenu:
+    keys:
+      distro-icon: 2
+      power-options: ['(0, true)', '(1, true)', '(2, true)', '(3, true)', '(4, true)', '(5, false)', '(6, false)']
+      extra-categories: ['(0, false)', '(1, true)', '(2, false)', '(3, false)', '(4, false)']
+      directory-shortcuts-list:
+        - ['Computer', 'drive-harddisk-symbolic', 'ArcMenu_Computer']
+        - ['Home', 'user-home-symbolic', 'ArcMenu_Home']
+      application-shortcuts-list:
+        - ['Settings', '', 'org.gnome.Settings.desktop']
+        - ['Tweaks', '', 'org.gnome.tweaks.desktop']
+        - ['Extensions', '', 'org.gnome.Extensions.desktop']
+      menu-button-icon: 'Distro_Icon'
+      menu-height: 400
+      custom-menu-button-icon-size: 28.0
+      menu-layout: 'Tognee'
+      menu-item-icon-size: 'Small'
+      pinned-app-list:
+        - 'Google Chrome'
+        - ''
+        - 'google-chrome.desktop'
+        - 'Terminal'
+        - ''
+        - 'org.gnome.Terminal.desktop'
+        - 'ArcMenu Settings'
+        - 'ArcMenu_ArcMenuIcon'
+        - 'gnome-extensions prefs arcmenu@arcmenu.com'
+  org.gnome.shell.extensions.dash-to-panel:
+    keys:
+      trans-use-custom-opacity: True
+      trans-panel-opacity: 1.0
+      trans-use-custom-bg: True
+      trans-bg-color: '#1d1d1d'
+      dot-position: 'BOTTOM'
+      dot-style-unfocused: 'DASHES'
+      panel-size: 40
+      show-tooltip: True
+      show-window-previews: False
+      stockgs-panelbtn-click-only: True
+      status-icon-padding: 2
+      tray-padding: 0
+      tray-size: 16
+      leftbox-padding: 0
+      leftbox-size: 0
+      appicon-margin: 2
+      appicon-padding: 2
+
+tools_ohmyzsh_config_plugins:
+  - 'colored-man-pages'
+  - 'colorize'
+  - 'extract'
+  - 'git'
+  - 'history'
+  - 'httpie'
+  - 'npm'
+  - 'symfony2'
+  - 'zsh-syntax-highlighting'
+
+tools_ohmyzsh_additional_plugins:
+  - 'https://github.com/zsh-users/zsh-syntax-highlighting.git'

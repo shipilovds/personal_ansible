@@ -1,6 +1,0 @@
----
-tools_neovim_plugins: []
-### Example:
-# tools_neovim_plugins:
-#   - 'git@github.com:dense-analysis/ale.git'
-#   - 'git@github.com:nvie/vim-flake8.git'

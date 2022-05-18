@@ -1,8 +1,0 @@
----
-- name: Install dnf packages
-  include: dnf.yml
-  tags: ['pkgs']
-
-- name: Install pip packages
-  include: pip.yml
-  tags: ['pip']

@@ -1,3 +1,4 @@
+---
 extends: default
 
 yaml-files:
@@ -11,7 +12,7 @@ rules:
     max-spaces-inside: 1
     level: error
   document-start:
-    present: true
+    present: True
   indentation:
     spaces: 2
     indent-sequences: consistent
@@ -22,10 +23,10 @@ rules:
   line-length:
     max: 150
     level: warning
-    allow-non-breakable-words: true
-    allow-non-breakable-inline-mappings: true
+    allow-non-breakable-words: True
+    allow-non-breakable-inline-mappings: True
   comments:
-    require-starting-space: false
+    require-starting-space: False
     level: warning
   comments-indentation: {}
   truthy:

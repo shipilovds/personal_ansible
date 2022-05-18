@@ -1,7 +1,0 @@
----
-- name: gsettings keys setup
-  gsetting:
-    user: "{{ ansible_env.USER }}"
-    key: "{{ item.key }}"
-    value: "{{ item.value }}"
-  loop: "{{ env_gsettings_kv }}"

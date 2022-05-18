@@ -8,4 +8,5 @@
 # E501: line too long (82 > 79 characters)
 # E402: module level import not at top of file
 # E741: do not use variables named ‘l’, ‘O’, or ‘I’
-ignore = E402, E501
+# W601:	.has_key() is deprecated, use 'in'
+ignore = E402, E501, W601

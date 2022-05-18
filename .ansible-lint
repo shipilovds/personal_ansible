@@ -1,5 +1,7 @@
+---
 skip_list:
   - risky-file-permissions
   - meta-no-info
   - command-instead-of-shell
   - git-latest
+  - fqcn-builtins

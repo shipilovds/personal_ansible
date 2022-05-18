@@ -1,4 +1,0 @@
----
-local_modules_srcs:
-  - 'https://raw.githubusercontent.com/shipilovds/ansible-gnome-extension-module/main/gnome_extension.py'
-  - 'https://raw.githubusercontent.com/jistr/ansible-gsetting/master/gsetting.py'

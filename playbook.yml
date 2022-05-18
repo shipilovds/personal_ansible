@@ -1,18 +1,16 @@
 ---
 - hosts: localhost
+  collections:
+    - shipilovds.workstation
   vars_files:
     - vars/general.yml
     - vars/enctypted.yml
   roles:
     - role: pkgs
-      become: True
       tags: ['pkgs']
     - role: tools
-      become: False
       tags: ['tools']
+    - role: gnome
+      tags: ['gnome']
     - role: services
-      become: True
       tags: ['services']
-    - role: env
-      become: False
-      tags: ['env']
